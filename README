@@ -1,9 +1,9 @@
-README(7)              Miscellaneous Information Manual              README(7)
+README(7)	       Miscellaneous Information Manual		     README(7)
 
-NNAAMMEE
-     nnkk - tic-tac-toe in Python without using any keywords
+NAME
+     nk - tic-tac-toe in Python without using any keywords
 
-DDEESSCCRRIIPPTTIIOONN
+DESCRIPTION
      This is a simple game written in Python.  It differs from others in the
      abscence of keywords: all the code is written without using them.
 
@@ -16,4 +16,4 @@ DDEESSCCRRIIPPTTIIOONN
      +---+---+---+
      | 7 | 8 | 9 |
      +---+---+---+
-nk                             February 22, 2025                            nk
+nk			       February 22, 2025			    nk
