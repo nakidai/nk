@@ -97,6 +97,21 @@ Board = partial(eval, """
                 ),
                 false
             )
+
+            self.is_gameover = partial(
+                eval,
+                'bool((len((line := set("".join(self.field[0])))) == 1) * ("".join(line)[0] != "_"))'
+                '+ bool((len((line := set("".join(self.field[1])))) == 1) * ("".join(line)[0] != "_"))'
+                '+ bool((len((line := set("".join(self.field[2])))) == 1) * ("".join(line)[0] != "_"))'
+
+                '+ bool((len(line := set(self.field[0][n := 0] + self.field[1][n] + self.field[2][n])) == 1) * ("".join(line)[0] != "_"))'
+                '+ bool((len(line := set(self.field[0][n := 1] + self.field[1][n] + self.field[2][n])) == 1) * ("".join(line)[0] != "_"))'
+                '+ bool((len(line := set(self.field[0][n := 2] + self.field[1][n] + self.field[2][n])) == 1) * ("".join(line)[0] != "_"))'
+
+                '+ bool((len(line := set(self.field[0][0] + self.field[1][1] + self.field[2][2])) == 1) * ("".join(line)[0] != "_"))'
+                '+ bool((len(line := set(self.field[2][0] + self.field[1][1] + self.field[0][2])) == 1) * ("".join(line)[0] != "_"))',
+                locals={"self": self}
+            )
         '''
     ),
     self,
@@ -114,13 +129,20 @@ any(
         partial(
             exec,
             """if 1:
-                print(f"{side.str}\\n{board.str()}")
+                print(side.str, end="")
 
                 cell = board.get_cell() - 1
                 {
                     false: partial(exec, "board.field[cell // 3][cell % 3] = side.str"),
                     true: partial(exec, "print('uhh behavior in this situation is not implemented yet'); exit(1)"),
                 }.get("xo".__contains__(board.field[cell // 3][cell % 3]))()
+
+                print(board.str())
+
+                {
+                    false: nothing,
+                    true: partial(exec, "print(f'{side.str} won!'); exit(0)"),
+                }.get(board.is_gameover())()
 
                 side.switch()
             """
