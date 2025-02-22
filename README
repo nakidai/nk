@@ -1,9 +1,19 @@
 README(7)              Miscellaneous Information Manual              README(7)
 
 NNAAMMEE
-     nnkk - python code without keywords
+     nnkk - tic-tac-toe in Python without using any keywords
 
 DDEESSCCRRIIPPTTIIOONN
-     This code is written without using any keywords.
+     This is a simple game written in Python.  It differs from others in the
+     abscence of keywords: all the code is written without using them.
 
-No-Keywords                                                        No-Keywords
+     To play, firstly enter first player's side, then enter number of cell on
+     every turn according to the table below:
+     +---+---+---+
+     | 1 | 2 | 3 |
+     +---+---+---+
+     | 4 | 5 | 6 |
+     +---+---+---+
+     | 7 | 8 | 9 |
+     +---+---+---+
+nk                             February 22, 2025                            nk
