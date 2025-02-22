@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 partial = __import__("functools").partial
 repeat = __import__("itertools").repeat
 starmap = __import__("itertools").starmap
