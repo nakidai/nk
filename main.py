@@ -133,11 +133,24 @@ any(
             """if 1:
                 print(side.str, end="")
 
-                cell = board.get_cell() - 1
-                {
-                    false: partial(exec, "board.field[cell // 3][cell % 3] = side.str"),
-                    true: partial(exec, "print('uhh behavior in this situation is not implemented yet'); exit(1)"),
-                }.get("xo".__contains__(board.field[cell // 3][cell % 3]))()
+                cell = next(
+                    filter(
+                        range(9).__contains__,
+                        starmap(
+                            partial(
+                                eval,
+                                '{'
+                                '    false: partial(eval, "cell"),'
+                                '    true: partial(eval, "none"),'
+                                '}.get("xo".__contains__(board.field[(cell := board.get_cell() - 1) // 3][cell % 3]))(locals={"cell": cell})'
+                            ),
+                            repeat(()),
+                        )
+                    ),
+                    false
+                )
+
+                board.field[cell // 3][cell % 3] = side.str
 
                 print(board.str())
 
