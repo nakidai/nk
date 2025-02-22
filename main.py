@@ -76,7 +76,7 @@ Board = partial(eval, """
             self.get_cell = partial(
                 next,
                 filter(
-                    bool,
+                    range(9).__contains__,
                     starmap(
                         partial(
                             eval,
@@ -84,10 +84,10 @@ Board = partial(eval, """
                             '    false: partial(eval, "none"),'
                             '    true: partial(eval, "res"),'
                             '}.get('
-                            '    range(1, 10).__contains__('
+                            '    range(9).__contains__('
                             '       res := {'
                             '            false: partial(eval, "-1"),'
-                            '            true: partial(eval, "int(inp)")'
+                            '            true: partial(eval, "int(inp) - 1")'
                             '        }.get('
                             '            (inp := input("? ")).isdigit()'
                             '        )(locals={"inp": inp})'
@@ -142,7 +142,7 @@ any(
                                 '{'
                                 '    false: partial(eval, "cell"),'
                                 '    true: partial(eval, "none"),'
-                                '}.get("xo".__contains__(board.field[(cell := board.get_cell() - 1) // 3][cell % 3]))(locals={"cell": cell})'
+                                '}.get("xo".__contains__(board.field[(cell := board.get_cell()) // 3][cell % 3]))(locals={"cell": cell})'
                             ),
                             repeat(()),
                         )
