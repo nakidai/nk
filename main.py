@@ -159,6 +159,11 @@ any(
                     true: partial(exec, "print(f'{side.str} won!'); exit(0)"),
                 }.get(board.is_gameover())()
 
+                {
+                    false: partial(exec, "print(f'draw :/'); exit(0)"),
+                    true: nothing,
+                }.get(str(board.field).__contains__('_'))()
+
                 side.switch()
             """
         ),
